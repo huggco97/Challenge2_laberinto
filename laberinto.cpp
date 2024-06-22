@@ -15,9 +15,9 @@ struct Posicion {
 void imprimir_laberinto(int **matriz, int filas, int columnas, bool **visitado) {
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
-            if (i == 1 && j == 1) {
+            if (i == 1 && j == 0) {
                 cout << "E"; // Entrada
-            } else if (i == filas - 2 && j == columnas - 2) {
+            } else if (i == filas - 2 && j == columnas - 1) {
                 cout << "S"; // Salida
             } else if (matriz[i][j] == 1) {
                 cout << "#";
@@ -59,6 +59,12 @@ void generar_laberinto(int filas, int columnas, float densidad) {
         x = (x / 2) * 2;
         int y = rand() % (filas - 4) + 2;
         y = (y / 2) * 2;
+
+        // Verificar que no se generen muros en la fila de la salida
+        if (y == filas - 2) {
+            continue;
+        }
+
         matriz[y][x] = 1;
         for (int j = 0; j < Fparedes; j++) {
             int mx[4] = {x, x, x + 2, x - 2};
@@ -72,7 +78,7 @@ void generar_laberinto(int filas, int columnas, float densidad) {
     }
 
     // Establecer entrada y salida
-    matriz[1][1] = 0; // Entrada
+    matriz[1][0] = 0; // Entrada
     matriz[filas - 2][columnas - 2] = 0; // Salida
 
     // Resolver laberinto
@@ -86,8 +92,8 @@ void generar_laberinto(int filas, int columnas, float densidad) {
         }
     }
 
-    Posicion inicio = {1, 1};
-    Posicion fin = {filas - 2, columnas - 2};
+    Posicion inicio = {0, 1};
+    Posicion fin = {columnas - 2, filas - 2};
     camino.push(inicio);
     visitado[inicio.y][inicio.x] = true;
     bool encontrado = false;
@@ -147,12 +153,10 @@ void generar_laberinto(int filas, int columnas, float densidad) {
 
     // Pintar laberinto final
     imprimir_laberinto(matriz, filas, columnas, visitado);
-
+    
     if (encontrado) {
         cout << "Escapaste del laberinto\n";
-    } else {
-        cout << "No hay salida\n";
-    }
+    } 
 
     // Liberar memoria
     for (int i = 0; i < filas; i++) {
