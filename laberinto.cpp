@@ -1,4 +1,4 @@
-//version final..
+
 #include <iostream>
 #include <ctime>
 #include <stack>
