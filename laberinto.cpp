@@ -23,7 +23,7 @@ void imprimir_laberinto(int **matriz, int filas, int columnas, bool **visitado) 
             } else if (matriz[i][j] == 1) {
                 cout << "#";
             } else if (visitado[i][j]) {
-                cout << "\033[32m*\033[0m"; // Asterisco azul
+                cout << "\033[32m*\033[0m"; // cambiar color al asterisco
             } else {
                 cout << ".";
             }
