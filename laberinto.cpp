@@ -1,4 +1,4 @@
-//version final
+//version final..
 #include <iostream>
 #include <ctime>
 #include <stack>
@@ -33,7 +33,7 @@ void imprimir_laberinto(int **matriz, int filas, int columnas, bool **visitado) 
     cout << "\n";
 }
 
-void generar_laberinto(int filas, int columnas, float densidad) {
+void generar_laberinto(int filas, int columnas, int densidad) {
     int **matriz;
     matriz = new int *[filas];
     int Fparedes = densidad * 8;
