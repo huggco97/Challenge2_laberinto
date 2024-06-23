@@ -171,10 +171,22 @@ void generar_laberinto(int filas, int columnas, int densidad) {
 int main() {
     int filas, columnas;
     float densidad = 1;
-    cout << "Ingrese el numero de filas: ";
-    cin >> filas;
-    cout << "Ingrese el numero de columnas: ";
-    cin >> columnas;
+    //validacion para el numero de filas
+    do{
+        cout << "Ingrese el numero de filas mayor o igual 11: ";
+        cin >> filas;
+        if(filas < 11){
+            cout << "El numero de filas debe ser mayor o igual a 11. Intente de nuevo.\n";
+        }
+    }while (filas < 11);
+    //validacion para el numero de columnas
+    do{
+        cout << "Ingrese el numero de columnas mayor o igual a 11: ";
+        cin >> columnas;
+        if (columnas < 11){
+            cout << "El numero de columnas debe ser mayor o igual a 11. Intente de nuevo.\n";
+        }
+    }while (columnas < 11);
     generar_laberinto(filas, columnas, densidad);
     cout << "FIN \n";
     return 0;
